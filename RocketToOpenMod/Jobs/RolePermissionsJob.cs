@@ -6,7 +6,7 @@ using RocketToOpenMod.Model.Rocket.Permissions;
 
 namespace RocketToOpenMod.Jobs
 {
-    public class PermissionsJob : Job
+    public class RolePermissionsJob : Job
     {
         
         public override async Task DoAsync()
@@ -31,28 +31,9 @@ namespace RocketToOpenMod.Jobs
             await SaveAsync(openMod);
 
         }
+        
 
-        private async Task<PermissionRoleData> GetRoleFromRocketGroup(RocketPermissionsGroup group)
-        {
-            PermissionRoleData data = new PermissionRoleData
-            {
-                Id = group.Id,
-                Parents = new HashSet<string>(){group.ParentGroup},
-                Priority = group.Priority,
-                Permissions = new HashSet<string>(),
-                Data = new Dictionary<string, object>(),
-                DisplayName = group.DisplayName,
-                IsAutoAssigned = group.Id == "default"
-            };
-
-            foreach (Permission rocketPerm in group.Permissions)
-                data.Permissions.Add(rocketPerm.Name);
-            
-            return data;
-
-        }
-
-        public PermissionsJob() : base( "permissions")
+        public RolePermissionsJob() : base( "permissions")
         {
         }
     }
