@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using RocketToOpenMod.Model.Rocket.Permissions;
+using RocketToOpenMod.Model.Rocket.Translations;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -28,6 +30,16 @@ namespace RocketToOpenMod.Jobs
             Console.WriteLine("[~] Loading Rocket permissions");
             FileStream stream = File.Open("Rocket.Permissions.xml", FileMode.Open);
             RocketPermissions rocket = (RocketPermissions) new XmlSerializer(typeof(RocketPermissions)).Deserialize(stream);
+            stream.Close();
+            return rocket;
+        }
+        
+        
+        protected async Task<TranslationList> LoadTranslationsAsync()
+        {
+            Console.WriteLine("[~] Loading Rocket translations");
+            FileStream stream = File.Open("Rocket.Translations.xml", FileMode.Open);
+            TranslationList rocket = (TranslationList) new XmlSerializer(typeof(TranslationList)).Deserialize(stream);
             stream.Close();
             return rocket;
         }
