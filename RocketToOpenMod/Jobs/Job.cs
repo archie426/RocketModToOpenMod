@@ -17,8 +17,10 @@ namespace RocketToOpenMod.Jobs
     {
         public abstract Task DoAsync();
 
-        private WriteFileType _write;
-        
+        private readonly WriteFileType _write;
+        private readonly string _name;
+
+
         protected async Task<PermissionRoleData> GetRoleFromRocketGroup(RocketPermissionsGroup group)
         {
             PermissionRoleData data = new PermissionRoleData
@@ -35,17 +37,17 @@ namespace RocketToOpenMod.Jobs
             foreach (Permission rocketPerm in group.Permissions)
                 data.Permissions.Add(rocketPerm.Name);
             
+            
             return data;
 
         }
 
         protected Job(WriteFileType write, string name)
         {
-            Name = name;
+            _name = name;
             _write = write;
         }
         
-        public string Name { get; }
 
         protected async Task<RocketPermissions> LoadRocketPermissionsAsync()
         {
@@ -81,21 +83,21 @@ namespace RocketToOpenMod.Jobs
             
             var serializedYaml = serializer.Serialize(data);
             var encodedData = Encoding.UTF8.GetBytes(serializedYaml);
-            var filePath = @$"OpenMod\{Name}.yml";
+            var filePath = @$"OpenMod\{_name}.yml";
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
 
         private async Task SaveXml<T>(T data) where T : class
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            xmlSerializer.Serialize(File.Open(@$"OpenMod\{Name}.yml", FileMode.Open), data);
+            xmlSerializer.Serialize(File.Open(@$"OpenMod\{_name}.xml", FileMode.Open), data);
         }
 
         private async Task SaveJson<T>(T data) where T : class
         {
             string serializedJson = JsonConvert.SerializeObject(data);
             byte[] encodedData = Encoding.UTF8.GetBytes(serializedJson);
-            string filePath = @$"OpenMod\{Name}.yml";
+            string filePath = @$"OpenMod\{_name}.json";
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
         
