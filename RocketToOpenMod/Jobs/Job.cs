@@ -16,7 +16,7 @@ namespace RocketToOpenMod.Jobs
             
         }
 
-        public Job(string name)
+        protected Job(string name)
         {
             Name = name;
         }
