@@ -1,5 +1,5 @@
 # RocketModToOpenMod
-Converts RocketMod permission files to OpenMod permission files
+Converts RocketMod data/configuration files to OpenMod data/configuration files
 
 Supports:
 
