@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "1h6Suu8yUzIrblGcbFK5HVyibsLX2xavzCBcOML4F7Sx9+Z0jrz8u5weipBrxaCr8hqAxKP0+o4+n+HNqeekXQ==",
+  "success": true,
+  "projectFilePath": "D:\\Libraries\\Projects\\RocketToOpenMod\\RocketToOpenMod\\RocketToOpenMod.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.configuration\\2.0.0\\microsoft.extensions.configuration.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.0.0\\microsoft.extensions.configuration.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\2.0.0\\microsoft.extensions.configuration.fileextensions.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\2.0.0\\microsoft.extensions.fileproviders.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\2.0.0\\microsoft.extensions.fileproviders.physical.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\2.0.0\\microsoft.extensions.filesystemglobbing.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.primitives\\2.0.0\\microsoft.extensions.primitives.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\netescapades.configuration.yaml\\2.0.1\\netescapades.configuration.yaml.2.0.1.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.4.0\\system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\yamldotnet\\6.1.2\\yamldotnet.6.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
