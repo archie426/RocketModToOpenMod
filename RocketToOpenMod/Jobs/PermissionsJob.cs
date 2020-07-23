@@ -9,7 +9,6 @@ namespace RocketToOpenMod.Jobs
     public class PermissionsJob : Job
     {
         
-        
         public override async Task DoAsync()
         {
             RocketPermissions rocket = await LoadRocketPermissionsAsync();
@@ -38,12 +37,12 @@ namespace RocketToOpenMod.Jobs
             PermissionRoleData data = new PermissionRoleData
             {
                 Id = group.Id,
-                Parents = new HashSet<string>(),
+                Parents = new HashSet<string>(){group.ParentGroup},
                 Priority = group.Priority,
                 Permissions = new HashSet<string>(),
                 Data = new Dictionary<string, object>(),
                 DisplayName = group.DisplayName,
-                IsAutoAssigned = false
+                IsAutoAssigned = group.Id == "default"
             };
 
             foreach (Permission rocketPerm in group.Permissions)
