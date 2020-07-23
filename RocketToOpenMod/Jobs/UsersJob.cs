@@ -9,7 +9,7 @@ namespace RocketToOpenMod.Jobs
 {
     public class UsersJob : Job
     {
-        public override async Task Do()
+        public override async Task DoAsync()
         {
             Console.WriteLine("[~] Loading user data from the following Rocket sources:" +
                               "\n" + "* Permissions");

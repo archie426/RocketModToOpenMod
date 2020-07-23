@@ -23,11 +23,11 @@ namespace RocketToOpenMod
 
             Console.WriteLine("1. Permissions ");
             currentJob = new PermissionsJob();
-            await currentJob.Do();
+            await currentJob.DoAsync();
             
             Console.WriteLine("2. Users");
             currentJob = new UsersJob();
-            await currentJob.Do();
+            await currentJob.DoAsync();
             
             Console.WriteLine("3. Core Translations");
             Console.WriteLine("Coming soon :p");

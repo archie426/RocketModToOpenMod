@@ -11,7 +11,7 @@ namespace RocketToOpenMod.Jobs
 {
     public abstract class Job
     {
-        public async virtual Task Do()
+        public async virtual Task DoAsync()
         {
             
         }

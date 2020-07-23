@@ -10,7 +10,7 @@ namespace RocketToOpenMod.Jobs
     {
         
         
-        public override async Task Do()
+        public override async Task DoAsync()
         {
             RocketPermissions rocket = await LoadRocketPermissionsAsync();
 
