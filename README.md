@@ -7,23 +7,17 @@ NOTE: This is not mandatory for the RocketMod link plugin. The point of this is 
 
 Supports:
 
-* Permissions
+[-] Permissions
 
-* Some parts of user data
+[-] Some parts of user data
 
-Expected to support:
+[] Core Translations
 
-* Core Translations
+File Types:
 
-File Types
-
-* XML - Read
+* XML - Read/Write
 
 * YAML - Write
-
-Adding support for:
-
-* XML - Write
 
 * JSON - Write
 
