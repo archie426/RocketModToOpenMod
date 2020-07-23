@@ -1,27 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 using RocketToOpenMod.Model.OpenMod.Permissions;
 using RocketToOpenMod.Model.Rocket.Permissions;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
 
-namespace RocketToOpenMod
+namespace RocketToOpenMod.Jobs
 {
-    public class PermissionsJob : IJob
+    public class PermissionsJob : Job
     {
         
         
-        public async Task Do()
+        public override async Task Do()
         {
-            Console.WriteLine("[~] Loading Rocket permissions");
-            FileStream stream = File.Open("Rocket.Permissions.xml", FileMode.Open);
-            RocketPermissions rocket = (RocketPermissions) new XmlSerializer(typeof(RocketPermissions)).Deserialize(stream);
-            stream.Close();
-            
+            RocketPermissions rocket = await LoadRocketPermissionsAsync();
+
             if (rocket == null)
             {
                 Console.WriteLine("[~] Could not load Rocket permissions!");
@@ -45,10 +37,13 @@ namespace RocketToOpenMod
         {
             PermissionRoleData data = new PermissionRoleData
             {
-                Id = group.DisplayName,
+                Id = group.Id,
                 Parents = new HashSet<string>(),
                 Priority = group.Priority,
-                Permissions = new HashSet<string>()
+                Permissions = new HashSet<string>(),
+                Data = new Dictionary<string, object>(),
+                DisplayName = group.DisplayName,
+                IsAutoAssigned = false
             };
 
             foreach (Permission rocketPerm in group.Permissions)
@@ -58,18 +53,8 @@ namespace RocketToOpenMod
 
         }
 
-        private async Task SaveAsync<T>(T data) where T : class
+        public PermissionsJob() : base( "permissions")
         {
-            ISerializer serializer = new SerializerBuilder()
-                .WithNamingConvention(new CamelCaseNamingConvention())
-                .Build();
-            
-            var serializedYaml = serializer.Serialize(data);
-            var encodedData = Encoding.UTF8.GetBytes(serializedYaml);
-            var filePath = @"OpenMod\permissions.yml";
-
-            await File.WriteAllBytesAsync(filePath, encodedData);
-            
         }
     }
 }

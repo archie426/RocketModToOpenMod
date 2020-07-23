@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using RocketToOpenMod.Jobs;
 
 namespace RocketToOpenMod
 {
@@ -18,13 +19,21 @@ namespace RocketToOpenMod
                 return;
             }
 
+            Job currentJob;
+
             Console.WriteLine("1. Permissions ");
-            IJob currentJob = new PermissionsJob();
+            currentJob = new PermissionsJob();
             await currentJob.Do();
             
-            Console.WriteLine("2. Rocket Core Translations");
+            Console.WriteLine("2. Users");
+            currentJob = new UsersJob();
+            await currentJob.Do();
+            
+            Console.WriteLine("3. Core Translations");
             Console.WriteLine("Coming soon :p");
 
+            Console.WriteLine("Done!");
+            
             await Task.Delay(5000);
 
 
