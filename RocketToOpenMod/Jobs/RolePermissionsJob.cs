@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RocketToOpenMod.Data;
 using RocketToOpenMod.Model.OpenMod.Permissions;
 using RocketToOpenMod.Model.Rocket.Permissions;
 
@@ -33,7 +34,7 @@ namespace RocketToOpenMod.Jobs
         }
         
 
-        public RolePermissionsJob() : base( "permissions")
+        public RolePermissionsJob(WriteFileType write) : base( write, "permissions")
         {
         }
     }

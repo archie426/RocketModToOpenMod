@@ -31,9 +31,17 @@
   "frameworks": {
     "netcoreapp3.1": {
       "dependencies": {
+        "Microsoft.Extensions.Localization": {
+          "target": "Package",
+          "version": "[3.1.6, )"
+        },
         "NetEscapades.Configuration.Yaml": {
           "target": "Package",
           "version": "[2.0.1, )"
+        },
+        "Newtonsoft.Json": {
+          "target": "Package",
+          "version": "[12.0.3, )"
         }
       },
       "imports": [

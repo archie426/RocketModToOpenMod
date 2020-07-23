@@ -1,22 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "adZmj2Hzs6+mgCI52IMZ+0TG+oqbR6DBPZyz1gmk0+pIBM+l0ML7pA/H1yPuyUEC7OHy4mwanThOralKZvjSCQ==",
+  "dgSpecHash": "xCN952RksdMw9pzvjHyvyjrMfmv0/ea2XfaA4ScBbtibzaQKZ/+HTJmCqdyLFdMeMiZsuX0zdI9uXuZJpwaspg==",
   "success": true,
   "projectFilePath": "D:\\Libraries\\Projects\\RocketToOpenMod\\RocketToOpenMod\\RocketToOpenMod.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.configuration\\2.0.0\\microsoft.extensions.configuration.2.0.0.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.0.0\\microsoft.extensions.configuration.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\2.0.0\\microsoft.extensions.configuration.fileextensions.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.6\\microsoft.extensions.dependencyinjection.abstractions.3.1.6.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\2.0.0\\microsoft.extensions.fileproviders.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\2.0.0\\microsoft.extensions.fileproviders.physical.2.0.0.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\2.0.0\\microsoft.extensions.filesystemglobbing.2.0.0.nupkg.sha512",
-    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.primitives\\2.0.0\\microsoft.extensions.primitives.2.0.0.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.localization\\3.1.6\\microsoft.extensions.localization.3.1.6.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\3.1.6\\microsoft.extensions.localization.abstractions.3.1.6.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.6\\microsoft.extensions.logging.abstractions.3.1.6.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.options\\3.1.6\\microsoft.extensions.options.3.1.6.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.6\\microsoft.extensions.primitives.3.1.6.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\netescapades.configuration.yaml\\2.0.1\\netescapades.configuration.yaml.2.0.1.nupkg.sha512",
-    "C:\\Users\\archi\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.4.0\\system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512",
-    "C:\\Users\\archi\\.nuget\\packages\\yamldotnet\\6.1.2\\yamldotnet.6.1.2.nupkg.sha512",
-    "C:\\Users\\archi\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\3.1.3\\microsoft.netcore.app.runtime.win-x64.3.1.3.nupkg.sha512",
-    "C:\\Users\\archi\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\3.1.3\\microsoft.windowsdesktop.app.runtime.win-x64.3.1.3.nupkg.sha512",
-    "C:\\Users\\archi\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\3.1.3\\microsoft.aspnetcore.app.runtime.win-x64.3.1.3.nupkg.sha512"
+    "C:\\Users\\archi\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\yamldotnet\\6.1.2\\yamldotnet.6.1.2.nupkg.sha512"
   ],
   "logs": []
 }
