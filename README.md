@@ -7,11 +7,11 @@ NOTE: This is not mandatory for the RocketMod link plugin. The point of this is 
 
 Supports:
 
-[-] Permissions
+- [x] Permissions
 
-[-] Some parts of user data
+- [x] Some parts of user data
 
-[] Core Translations
+- [ ] Core Translations
 
 File Types:
 
