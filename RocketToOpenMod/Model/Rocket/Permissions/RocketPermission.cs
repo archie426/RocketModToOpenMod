@@ -19,10 +19,6 @@ namespace RocketToOpenMod.Model.Rocket.Permissions
             Name = name;
             Cooldown = cooldown;
         }
-
-        public override string ToString()
-        {
-            return Name;
-        }
+        
     }
 }
