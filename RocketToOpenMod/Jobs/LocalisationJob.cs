@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using RocketToOpenMod.Data;
 using RocketToOpenMod.Model.OpenMod.Localisations;
 using RocketToOpenMod.Model.Rocket.Translations;
 
@@ -24,7 +25,7 @@ namespace RocketToOpenMod.Jobs
         }; 
         
         
-        public LocalisationJob() : base("localisation")
+        public LocalisationJob(WriteFileType write) : base(write, "localisation")
         {
             
         }
