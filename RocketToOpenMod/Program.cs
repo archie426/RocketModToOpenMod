@@ -6,7 +6,7 @@ using RocketToOpenMod.Jobs;
 
 namespace RocketToOpenMod
 {
-    class Program
+    internal static class Program
     {
         public static async Task Main(string[] args)
         {
@@ -40,12 +40,13 @@ namespace RocketToOpenMod
             Console.WriteLine("2. User Permissions ");
             Console.WriteLine("Coming soon :p");
             
-            Console.WriteLine("3. Users");
+            Console.WriteLine("3. User General Data");
             currentJob = new UsersJob(write);
             await currentJob.DoAsync();
             
             Console.WriteLine("4. Core Translations");
-            Console.WriteLine("Coming soon :p");
+            currentJob = new LocalisationJob(write);
+            await currentJob.DoAsync();
 
             Console.WriteLine("Done!");
             
