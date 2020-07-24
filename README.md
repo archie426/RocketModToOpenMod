@@ -11,7 +11,9 @@ Supports:
 
 - [x] Some parts of user data
 
-- [ ] Core Translations
+- [x] Core Translations
+
+- [ ] Custom Translation Lists
 
 File Types:
 
