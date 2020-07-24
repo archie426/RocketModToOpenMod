@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "88UQgPtM6IwvNafaGHUTR1y7xk3Olz8kCaFV9xyW1ixXTTw1QIns9pTDakEnfwBRaF/GiviE14dfiLsrm8bdSQ==",
+  "dgSpecHash": "xCN952RksdMw9pzvjHyvyjrMfmv0/ea2XfaA4ScBbtibzaQKZ/+HTJmCqdyLFdMeMiZsuX0zdI9uXuZJpwaspg==",
   "success": true,
   "projectFilePath": "D:\\Libraries\\Projects\\RocketToOpenMod\\RocketToOpenMod\\RocketToOpenMod.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.options\\3.1.6\\microsoft.extensions.options.3.1.6.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.6\\microsoft.extensions.primitives.3.1.6.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\netescapades.configuration.yaml\\2.0.1\\netescapades.configuration.yaml.2.0.1.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\yamldotnet\\6.1.2\\yamldotnet.6.1.2.nupkg.sha512"
   ],
   "logs": []

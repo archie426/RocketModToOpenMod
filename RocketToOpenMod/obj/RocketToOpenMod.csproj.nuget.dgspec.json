@@ -50,6 +50,10 @@
             "NetEscapades.Configuration.Yaml": {
               "target": "Package",
               "version": "[2.0.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
             }
           },
           "imports": [
