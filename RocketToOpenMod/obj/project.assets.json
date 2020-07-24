@@ -283,7 +283,7 @@
     "Microsoft.Extensions.Localization.Abstractions/3.1.6": {
       "sha512": "S4MewGip1NFzLR1Sn9r1u17pd0rHSj41Cf4Q00e/08Rr/RhHryAnEvTUanzaDVWbT1MzdaXBYwfTRvsJG6y4cA==",
       "type": "package",
-      "path": "microsoft.extensions.localization.abstractions/3.1.6",
+      "path": "microsoft.extensions.primitives/2.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -415,6 +415,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Microsoft.Extensions.Localization >= 3.1.6",
+      "NetEscapades.Configuration.Yaml >= 2.0.1",
       "Microsoft.Extensions.Localization >= 3.1.6",
       "NetEscapades.Configuration.Yaml >= 2.0.1",
       "Newtonsoft.Json >= 12.0.3"
