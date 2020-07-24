@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -11,9 +12,15 @@ namespace RocketToOpenMod.Jobs
     public class LocalisationJob : Job
     {
 
-        public static readonly Dictionary<string, string> Conversions = new Dictionary<string, string>()
+        public static readonly Dictionary<string, string> ErrorConversions = new Dictionary<string, string>()
         {
-            { "command_no_permission", "commands:openmod:restricted"}
+            { "command_no_permission", "restricted"}
+        }; 
+        
+        
+        public static readonly Dictionary<string, string> OtherConversions = new Dictionary<string, string>()
+        {
+            
         }; 
         
         
@@ -24,21 +31,32 @@ namespace RocketToOpenMod.Jobs
 
         public override async Task DoAsync()
         {
+            Console.WriteLine("[~] Loading Rocket translations");
+            
             TranslationList rocket = await LoadTranslationsAsync();
             
-            var translations = new ConfigurationBuilder()
-                .SetBasePath("OpenMod")
-                .AddYamlFile("translations.yaml", true, reloadOnChange: true)
-                .Build();
+            Console.WriteLine("[~] Preparing OpenMod translations");
             
-            IStringLocalizer localizer = new ConfigurationBasedStringLocalizer(translations);
-
-            foreach (string rocketKey in Conversions.Keys)
+            Dictionary<string, string> errors = new Dictionary<string, string>();
+            foreach (string key in ErrorConversions.Keys)
             {
-                //TODO: Sort this all out
-                localizer[Conversions[rocketKey]] = new LocalizedString(Conversions[rocketKey],rocket.Translate(rocketKey));
+                string value = rocket.Translate(key);
+                string newKey = ErrorConversions[key];
+                errors.Add(newKey, value);
             }
             
+            Dictionary<string, string> others = new Dictionary<string, string>();
+            foreach (string key in OtherConversions.Keys)
+            {
+                string value = rocket.Translate(key);
+                string newKey = OtherConversions[key];
+                others.Add(newKey, value);
+            }
+            
+            commands openMod = new commands(others, errors);
+            
+            Console.WriteLine("[~] Saving OpenMod translations");
+            await SaveAsync(openMod);
         }
     }
 }
