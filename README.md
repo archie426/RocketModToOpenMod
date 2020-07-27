@@ -25,7 +25,7 @@ Supports:
 
 - [x] Core Translations
 
-- [ ] Custom Translation Lists
+- [ ] Adding jobs via external assemblies
 
 File Types:
 
