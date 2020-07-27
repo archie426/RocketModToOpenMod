@@ -31,6 +31,7 @@ namespace RocketToOpenMod.Jobs
                         openMod.Users.Add(new UserData()
                         {
                             Roles = new HashSet<string>(){group.Id},
+                            Type = "player",
                             Data = new Dictionary<string, object>(),
                             FirstSeen = DateTime.Now,
                             LastSeen = DateTime.Today,

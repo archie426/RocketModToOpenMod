@@ -23,6 +23,7 @@ namespace RocketToOpenMod
 
             Job currentJob;
             WriteFileType write;
+            
 
             if (args.Length == 0)
                 write = WriteFileType.Yaml;
@@ -33,6 +34,11 @@ namespace RocketToOpenMod
                     "xml" => WriteFileType.Xml,
                     _ => WriteFileType.Yaml
                 };
+
+            if (args.Length == 2)
+            {
+                
+            }
 
             Console.WriteLine("1. Role Permissions ");
             currentJob = new RolePermissionsJob(write);
