@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RocketToOpenMod.API;
 using RocketToOpenMod.Data;
 using RocketToOpenMod.Model.OpenMod.Permissions;
 using RocketToOpenMod.Model.Rocket.Permissions;

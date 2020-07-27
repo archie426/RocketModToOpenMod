@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RocketToOpenMod.API;
 using RocketToOpenMod.Data;
 using RocketToOpenMod.Model.OpenMod.Users;
 using RocketToOpenMod.Model.Rocket.Permissions;

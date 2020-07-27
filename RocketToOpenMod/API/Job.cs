@@ -12,7 +12,7 @@ using RocketToOpenMod.Model.Rocket.Translations;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace RocketToOpenMod.Jobs
+namespace RocketToOpenMod.API
 {
     public abstract class Job
     {
@@ -37,8 +37,7 @@ namespace RocketToOpenMod.Jobs
 
             foreach (Permission rocketPerm in group.Permissions)
                 data.Permissions.Add(rocketPerm.Name);
-            
-            
+
             return data;
 
         }
@@ -49,7 +48,6 @@ namespace RocketToOpenMod.Jobs
             _write = write;
         }
         
-
         protected async Task<RocketPermissions> LoadRocketPermissionsAsync()
         {
             Console.WriteLine("[~] Loading Rocket permissions");
@@ -58,7 +56,6 @@ namespace RocketToOpenMod.Jobs
             stream.Close();
             return rocket;
         }
-        
         
         protected async Task<TranslationList> LoadTranslationsAsync()
         {
@@ -81,6 +78,9 @@ namespace RocketToOpenMod.Jobs
                     break;
                 case WriteFileType.Xml:
                     await SaveXml(data);
+                    break;
+                default:
+                    await SaveYaml(data);
                     break;
             }
             

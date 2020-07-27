@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using RocketToOpenMod.API;
 using RocketToOpenMod.Data;
 using RocketToOpenMod.Jobs;
 
@@ -47,6 +48,10 @@ namespace RocketToOpenMod
             Console.WriteLine("4. Core Translations");
             currentJob = new LocalisationJob(write);
             await currentJob.DoAsync();
+            
+            Console.WriteLine("Finding jobs from external assemblies....");
+            ExternalJobManager externalJobManager = new ExternalJobManager(write);
+            await externalJobManager.LoadExternalJobs();
 
             Console.WriteLine("Done!");
             
