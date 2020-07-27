@@ -14,7 +14,7 @@ namespace RocketToOpenMod
             Console.WriteLine("RocketMod to OpenMod");
             Console.WriteLine("If you haven't already please place this file inside the Rocket folder");
             
-            if (!File.Exists("Rocket.Permissions.Xml"))
+            if (!File.Exists("Permissions.Config.Xml"))
             {
                 Console.WriteLine("Wrong folder! Exiting");
                 await Task.Delay(3000);

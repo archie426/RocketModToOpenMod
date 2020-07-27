@@ -39,7 +39,6 @@ namespace RocketToOpenMod.API
                 data.Permissions.Add(rocketPerm.Name);
 
             return data;
-
         }
 
         protected Job(WriteFileType write, string name)
@@ -51,7 +50,7 @@ namespace RocketToOpenMod.API
         protected async Task<RocketPermissions> LoadRocketPermissionsAsync()
         {
             Console.WriteLine("[~] Loading Rocket permissions");
-            FileStream stream = File.Open("Rocket.Permissions.xml", FileMode.Open);
+            FileStream stream = File.Open("Permissions.Config.xml", FileMode.Open);
             RocketPermissions rocket = (RocketPermissions) new XmlSerializer(typeof(RocketPermissions)).Deserialize(stream);
             stream.Close();
             return rocket;
@@ -60,7 +59,7 @@ namespace RocketToOpenMod.API
         protected async Task<TranslationList> LoadTranslationsAsync()
         {
             Console.WriteLine("[~] Loading Rocket translations");
-            FileStream stream = File.Open("Rocket.Translations.xml", FileMode.Open);
+            FileStream stream = File.Open("Rocket.en.translation.xml", FileMode.Open);
             TranslationList rocket = (TranslationList) new XmlSerializer(typeof(TranslationList)).Deserialize(stream);
             stream.Close();
             return rocket;
