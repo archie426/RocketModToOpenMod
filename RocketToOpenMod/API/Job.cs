@@ -87,27 +87,28 @@ namespace RocketToOpenMod.API
 
         private async Task SaveYaml<T>(T data) where T : class
         {
-            ISerializer serializer = new SerializerBuilder()
+            ISerializer serializer = new SerializerBuilder().EmitDefaults()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();
             
             var serializedYaml = serializer.Serialize(data);
             var encodedData = Encoding.UTF8.GetBytes(serializedYaml);
-            var filePath = @$"OpenMod\{_name}.yml";
+            var filePath = @$"{_name}.yml";
+            await File.Create(filePath).DisposeAsync();
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
 
         private async Task SaveXml<T>(T data) where T : class
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            xmlSerializer.Serialize(File.Open(@$"OpenMod\{_name}.xml", FileMode.Open), data);
+            xmlSerializer.Serialize(File.Open(@$"{_name}.xml", FileMode.Open), data);
         }
 
         private async Task SaveJson<T>(T data) where T : class
         {
             string serializedJson = JsonConvert.SerializeObject(data);
             byte[] encodedData = Encoding.UTF8.GetBytes(serializedJson);
-            string filePath = @$"OpenMod\{_name}.json";
+            string filePath = @$"{_name}.json";
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
         

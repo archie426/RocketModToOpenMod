@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "l/bWJv29/N/4bN28oBUgpYKaMV8eCjyQRodLkZBIc4qSH0hOdzjAsz1JHjapaEiS7Gb0aFZ+cSL6nZmYpN+Kgw==",
+  "dgSpecHash": "Q8kOJZVTW013g4QPz0jqMAhb4RZ9HY+bQXw2f6vYGl0cJTgg3xd+zxgpMgqLDNJCZXKC5MxXOWvvkipTj/D46w==",
   "success": true,
   "projectFilePath": "D:\\Libraries\\Projects\\RocketToOpenMod\\RocketToOpenMod\\RocketToOpenMod.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,10 @@
     "C:\\Users\\archi\\.nuget\\packages\\netescapades.configuration.yaml\\2.0.1\\netescapades.configuration.yaml.2.0.1.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\archi\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.4.0\\system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512",
-    "C:\\Users\\archi\\.nuget\\packages\\yamldotnet\\6.1.2\\yamldotnet.6.1.2.nupkg.sha512"
+    "C:\\Users\\archi\\.nuget\\packages\\yamldotnet\\6.1.2\\yamldotnet.6.1.2.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\3.1.3\\microsoft.netcore.app.runtime.win-x64.3.1.3.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\3.1.3\\microsoft.windowsdesktop.app.runtime.win-x64.3.1.3.nupkg.sha512",
+    "C:\\Users\\archi\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\3.1.3\\microsoft.aspnetcore.app.runtime.win-x64.3.1.3.nupkg.sha512"
   ],
   "logs": []
 }
