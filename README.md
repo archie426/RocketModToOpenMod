@@ -15,6 +15,7 @@ NOTE: This is not mandatory for the RocketMod link plugin. The point of this is 
 
 To save to XML or JSON, use cmd and run the exe file with the args json or xml.
 
+
 ## Usability
 
 Supports:
@@ -35,5 +36,7 @@ File Types:
 
 * JSON - Write
 
+## Extending usability
 
+To add a job, build this as a library then reference it in your project. Use the Job attribute and implement Job. The Job abstract class exposes multiple shared methods such as saving and loading data. Make sure to only have the WriteFileType in your constructor, for name, call it what you want to be the name of your generated file.
 
