@@ -2,7 +2,7 @@ using System;
 
 namespace RocketToOpenMod.API
 {
-    public class JobAttribute : Attribute
+    public class ExternalJobAttribute : Attribute
     {
         
     }

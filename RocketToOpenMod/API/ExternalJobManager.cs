@@ -20,7 +20,7 @@ namespace RocketToOpenMod.API
 
         private void CurrentDomainOnAssemblyLoad(object? sender, AssemblyLoadEventArgs args)
         {
-            foreach (Type t in args.LoadedAssembly.GetTypes().Where(t => t.IsDefined(typeof(JobAttribute), false)))
+            foreach (Type t in args.LoadedAssembly.GetTypes().Where(t => t.IsDefined(typeof(ExternalJobAttribute), false)))
             {
                Job job = (Job) Activator.CreateInstance(t, _write);
                job?.DoAsync();
