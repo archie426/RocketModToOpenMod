@@ -11,7 +11,7 @@ NOTE: This is not mandatory for the RocketMod link plugin. The point of this is 
 
 3. Run the exe
 
-4. A new folder named OpenMod will be generated
+4. Your new data will be generated
 
 To save to XML or JSON, use cmd and run the exe file with the args json or xml.
 
@@ -20,7 +20,7 @@ To save to XML or JSON, use cmd and run the exe file with the args json or xml.
 
 Supports:
 
-- [x] Permissions
+- [x] Permissions (Name changes and format changes)
 
 - [x] Some parts of user data
 
