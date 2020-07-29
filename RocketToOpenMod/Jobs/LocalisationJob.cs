@@ -11,14 +11,13 @@ namespace RocketToOpenMod.Jobs
     //TODO: Add support for Unturned and eco
     public class LocalisationJob : Job
     {
-
-        public static readonly Dictionary<string, string> ErrorConversions = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> ErrorConversions = new Dictionary<string, string>()
         {
             { "command_no_permission", "restricted"}
-        }; 
-        
-        
-        public static readonly Dictionary<string, string> OtherConversions = new Dictionary<string, string>()
+        };
+
+
+        private static readonly Dictionary<string, string> OtherConversions = new Dictionary<string, string>()
         {
             
         }; 
@@ -31,8 +30,6 @@ namespace RocketToOpenMod.Jobs
 
         public override async Task DoAsync()
         {
-            Console.WriteLine("[~] Loading Rocket translations");
-            
             TranslationList rocket = await LoadTranslationsAsync();
             
             Console.WriteLine("[~] Preparing OpenMod translations");

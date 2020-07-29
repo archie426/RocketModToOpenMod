@@ -37,11 +37,12 @@ namespace RocketToOpenMod
             
 
             Console.WriteLine("1. Role Permissions ");
-            currentJob = new RolePermissionsJob(write);
+            currentJob = new RolePermissionsReformatJob(write);
             await currentJob.DoAsync();
             
-            Console.WriteLine("2. User Permissions ");
-            Console.WriteLine("Coming soon :p");
+            Console.WriteLine("2. Permission Name Conversions ");
+            currentJob = new RolePermissionsRefactorJob(write);
+            await currentJob.DoAsync();
             
             Console.WriteLine("3. User General Data");
             currentJob = new UsersJob(write);

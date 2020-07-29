@@ -8,7 +8,7 @@ using RocketToOpenMod.Model.Rocket.Permissions;
 
 namespace RocketToOpenMod.Jobs
 {
-    public class RolePermissionsJob : Job
+    public class RolePermissionsReformatJob : Job
     {
         
         public override async Task DoAsync()
@@ -35,7 +35,7 @@ namespace RocketToOpenMod.Jobs
         }
         
 
-        public RolePermissionsJob(WriteFileType write) : base( write, "permissions")
+        public RolePermissionsReformatJob(WriteFileType write) : base( write, "permissions")
         {
         }
     }
