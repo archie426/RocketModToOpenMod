@@ -31,6 +31,12 @@ namespace RocketToOpenMod.Jobs
         public override async Task DoAsync()
         {
             TranslationList rocket = await LoadTranslationsAsync();
+
+            if (rocket == null)
+            {
+                Console.WriteLine("[~] Could not load Rocket translations!");
+                return;
+            }
             
             Console.WriteLine("[~] Preparing OpenMod translations");
             

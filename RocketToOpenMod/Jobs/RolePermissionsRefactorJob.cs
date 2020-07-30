@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +28,12 @@ namespace RocketToOpenMod.Jobs
         {
 
             PermissionRolesData openMod = await LoadOpenPermissionsAsync();
+            
+            if (openMod == null)
+            {
+                Console.WriteLine("[~] Could not load OpenMod translations!");
+                return;
+            }
             
             foreach (PermissionRoleData role in openMod.Roles)
             {

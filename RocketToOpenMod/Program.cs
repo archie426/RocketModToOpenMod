@@ -36,7 +36,7 @@ namespace RocketToOpenMod
                 };
             
 
-            Console.WriteLine("1. Role Permissions ");
+            Console.WriteLine("1. Permission Format Conversions ");
             currentJob = new RolePermissionsReformatJob(write);
             await currentJob.DoAsync();
             

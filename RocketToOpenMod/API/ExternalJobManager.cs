@@ -14,26 +14,29 @@ namespace RocketToOpenMod.API
         
         public ExternalJobManager(WriteFileType write)
         {
-            AppDomain.CurrentDomain.AssemblyLoad += CurrentDomainOnAssemblyLoad;
             _write = write;
         }
-
-        private void CurrentDomainOnAssemblyLoad(object? sender, AssemblyLoadEventArgs args)
-        {
-            foreach (Type t in args.LoadedAssembly.GetTypes().Where(t => t.IsDefined(typeof(ExternalJobAttribute), false)))
-            {
-               Job job = (Job) Activator.CreateInstance(t, _write);
-               job?.DoAsync();
-            }
-        }
-
+        
         public async Task LoadExternalJobs()
         {
+            int i = 4;
+            
             foreach (string file in Directory.GetFiles(Assembly.GetExecutingAssembly().Location.Replace("RocketToOpenMod.exe", "")))
             {
                 if (!file.Contains("dll"))
                     return;
-                Assembly.Load(file);
+                
+                Assembly assembly = Assembly.Load(file);
+                
+                foreach (Type t in assembly.GetTypes().Where(t => t.IsDefined(typeof(ExternalJobAttribute), false)))
+                {
+                    Job job = (Job) Activator.CreateInstance(t, _write);
+                    if (job == null)
+                        return;
+                    Console.WriteLine($"{i}. {assembly.FullName}: {job.Name}");
+                    await job.DoAsync();
+                    i++;
+                }
             } 
         }
     }

@@ -19,7 +19,7 @@ namespace RocketToOpenMod.API
         public abstract Task DoAsync();
 
         private readonly WriteFileType _write;
-        private readonly string _name;
+        public readonly string Name;
 
 
         protected async Task<PermissionRoleData> GetRoleFromRocketGroup(RocketPermissionsGroup group)
@@ -41,9 +41,14 @@ namespace RocketToOpenMod.API
             return data;
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+        
         protected Job(WriteFileType write, string name)
         {
-            _name = name;
+            Name = name;
             _write = write;
         }
         
@@ -95,7 +100,7 @@ namespace RocketToOpenMod.API
             
             var serializedYaml = serializer.Serialize(data);
             var encodedData = Encoding.UTF8.GetBytes(serializedYaml);
-            var filePath = @$"{_name}.yml";
+            var filePath = @$"{Name}.yml";
             await File.Create(filePath).DisposeAsync();
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
@@ -112,14 +117,14 @@ namespace RocketToOpenMod.API
         private async Task SaveXml<T>(T data) where T : class
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            xmlSerializer.Serialize(File.Open(@$"{_name}.xml", FileMode.Open), data);
+            xmlSerializer.Serialize(File.Open(@$"{Name}.xml", FileMode.Open), data);
         }
 
         private async Task SaveJson<T>(T data) where T : class
         {
             string serializedJson = JsonConvert.SerializeObject(data);
             byte[] encodedData = Encoding.UTF8.GetBytes(serializedJson);
-            string filePath = @$"{_name}.json";
+            string filePath = @$"{Name}.json";
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
         

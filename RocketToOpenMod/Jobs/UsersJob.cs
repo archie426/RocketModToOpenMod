@@ -18,6 +18,12 @@ namespace RocketToOpenMod.Jobs
 
             RocketPermissions rocketPermissions = await LoadRocketPermissionsAsync();
 
+            if (rocketPermissions == null)
+            {
+                Console.WriteLine("[~] Could not load Rocket permissions");
+                return;
+            }
+
             UsersData openMod = new UsersData {Users = new List<UserData>()};
             
             Console.WriteLine("[~] Preparing user data");

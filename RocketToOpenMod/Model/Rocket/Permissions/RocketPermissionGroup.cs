@@ -45,11 +45,7 @@ namespace RocketToOpenMod.Model.Rocket.Permissions
         [XmlArray("Commands")]
         [XmlArrayItem(ElementName = "Command")]
         public List<Permission> OldPermissions;
-
-        public bool ShouldSerializeOldPermissions()
-        {
-            return OldPermissions != null && OldPermissions.Count != 0;
-        }
+        
 
         [XmlArray("Permissions")]
         [XmlArrayItem(ElementName = "Permission")]
@@ -57,17 +53,16 @@ namespace RocketToOpenMod.Model.Rocket.Permissions
         public List<Permission> Permissions
         {
             get {
-                if (OldPermissions != null) {
-                    if (permissions == null) permissions = new List<Permission>();
-                    permissions.AddRange(OldPermissions);
-                    OldPermissions = null;
-                }
+                
+                if (OldPermissions == null) return permissions;
+                
+                permissions ??= new List<Permission>();
+                permissions.AddRange(OldPermissions);
+                OldPermissions = null;
+                
                 return permissions;
             }
-            set
-            {
-                permissions = value;
-            }
+            set => permissions = value;
         }
 
 
