@@ -13,20 +13,19 @@ namespace RocketToOpenMod.Jobs
     {
         public override async Task DoAsync()
         {
-            Console.WriteLine("[~] Loading user data from the following Rocket sources:" +
+            LogInfo("Loading user data from the following Rocket sources:" +
                               "\n" + "* Permissions");
 
             RocketPermissions rocketPermissions = await LoadRocketPermissionsAsync();
 
             if (rocketPermissions == null)
             {
-                Console.WriteLine("[~] Could not load Rocket permissions");
+                LogInfo("Could not load Rocket permissions");
                 return;
             }
 
             UsersData openMod = new UsersData {Users = new List<UserData>()};
-            
-            Console.WriteLine("[~] Preparing user data");
+            LogInfo("Preparing user data");
 
             foreach (RocketPermissionsGroup group in rocketPermissions.Groups)
             {
@@ -50,7 +49,7 @@ namespace RocketToOpenMod.Jobs
                 }
             }
             
-            Console.WriteLine("[~] Saving user data");
+            LogInfo("Saving user data");
             await SaveAsync(openMod);
 
         }

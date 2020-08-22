@@ -21,6 +21,9 @@ namespace RocketToOpenMod.API
         private readonly WriteFileType _write;
         public string Name { get; }
 
+        protected async Task LogInfo(object input) {
+          Console.WriteLine("[~] " + input);
+        }
 
         protected async Task<PermissionRoleData> GetRoleFromRocketGroup(RocketPermissionsGroup group)
         {
@@ -54,7 +57,7 @@ namespace RocketToOpenMod.API
         
         protected async Task<RocketPermissions> LoadRocketPermissionsAsync()
         {
-            Console.WriteLine("[~] Loading Rocket permissions");
+            LogInfo("Loading Rocket permissions");
             return await DeserializeRocketAsset<RocketPermissions>("Permissions.Config.xml");
         }
 
@@ -69,7 +72,7 @@ namespace RocketToOpenMod.API
         
         protected async Task<TranslationList> LoadTranslationsAsync()
         {
-            Console.WriteLine("[~] Loading Rocket translations");
+            LogInfo("Loading Rocket translations");
             return await DeserializeRocketAsset<TranslationList>("Rocket.Translations.en.xml");
         }
 
@@ -108,7 +111,7 @@ namespace RocketToOpenMod.API
 
         protected async Task<PermissionRolesData> LoadOpenPermissionsAsync()
         {
-            Console.WriteLine("[~] Loading OpenMod permissions");
+            LogInfo("Loading OpenMod permissions");
             IDeserializer serializer = new DeserializerBuilder()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();

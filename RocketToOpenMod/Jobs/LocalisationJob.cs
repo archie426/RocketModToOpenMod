@@ -34,11 +34,11 @@ namespace RocketToOpenMod.Jobs
 
             if (rocket == null)
             {
-                Console.WriteLine("[~] Could not load Rocket translations!");
+                LogInfo("Could not load Rocket translations!");
                 return;
             }
             
-            Console.WriteLine("[~] Preparing OpenMod translations");
+            LogInfo("Preparing OpenMod translations");
             
             Dictionary<string, string> errors = new Dictionary<string, string>();
             foreach (string key in ErrorConversions.Keys)
@@ -58,7 +58,7 @@ namespace RocketToOpenMod.Jobs
             
             commands openMod = new commands(others, errors);
             
-            Console.WriteLine("[~] Saving OpenMod translations");
+            LogInfo("Saving OpenMod translations");
             await SaveAsync(openMod);
         }
     }
