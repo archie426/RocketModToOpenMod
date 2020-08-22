@@ -19,7 +19,7 @@ namespace RocketToOpenMod.API
         public abstract Task DoAsync();
 
         private readonly WriteFileType _write;
-        public readonly string Name;
+        public string Name { get; }
 
 
         protected async Task<PermissionRoleData> GetRoleFromRocketGroup(RocketPermissionsGroup group)
@@ -62,7 +62,7 @@ namespace RocketToOpenMod.API
         protected async Task<T> DeserializeRocketAsset<T>(string name)
         {
             FileStream stream = File.Open(name, FileMode.Open);
-            T rocket = (T) new XmlSerializer(typeof(TranslationList)).Deserialize(stream);
+            T rocket = (T) new XmlSerializer(typeof(T)).Deserialize(stream);
             stream.Close();
             return rocket;
         }
@@ -101,7 +101,8 @@ namespace RocketToOpenMod.API
             var serializedYaml = serializer.Serialize(data);
             var encodedData = Encoding.UTF8.GetBytes(serializedYaml);
             var filePath = @$"{Name}.yml";
-            await File.Create(filePath).DisposeAsync();
+            if (!File.Exists(filePath))
+                await File.Create(filePath).DisposeAsync();
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
 

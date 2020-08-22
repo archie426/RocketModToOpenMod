@@ -7,7 +7,7 @@ using RocketToOpenMod.Data;
 
 namespace RocketToOpenMod.API
 {
-    public class ExternalJobManager
+    public class ExternalJobManager : IExternalJobManager
     {
 
         private readonly WriteFileType _write;
