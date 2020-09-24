@@ -55,14 +55,20 @@ namespace RocketToOpenMod.API
         protected async Task<RocketPermissions> LoadRocketPermissionsAsync()
         {
             Console.WriteLine("[~] Loading Rocket permissions");
-            return await DeserializeRocketAsset<RocketPermissions>("Permissions.Config.xml");
+            return await DeserializeRocketAsset<RocketPermissions>("Permissions.Config.xml", "RocketPermissions");
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
-        protected async Task<T> DeserializeRocketAsset<T>(string name)
+        protected async Task<T> DeserializeRocketAsset<T>(string name, string rootAttributeName = null)
         {
             FileStream stream = File.Open(name, FileMode.Open);
-            T rocket = (T) new XmlSerializer(typeof(TranslationList)).Deserialize(stream);
+            T rocket;
+            
+            if ((await File.ReadAllTextAsync(name)).Contains("xmnl"))
+                rocket = (T) new XmlSerializer(typeof(T), new XmlRootAttribute(rootAttributeName)).Deserialize(stream);
+            else
+                rocket = (T) new XmlSerializer(typeof(T)).Deserialize(stream);
+            
             stream.Close();
             return rocket;
         }
@@ -70,7 +76,7 @@ namespace RocketToOpenMod.API
         protected async Task<TranslationList> LoadTranslationsAsync()
         {
             Console.WriteLine("[~] Loading Rocket translations");
-            return await DeserializeRocketAsset<TranslationList>("Rocket.Translations.en.xml");
+            return await DeserializeRocketAsset<TranslationList>("Rocket.Translations.en.xml", "RocketTranslations");
         }
 
         protected async Task SaveAsync<T>(T data) where T : class
