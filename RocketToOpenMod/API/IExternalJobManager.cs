@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace RocketModToOpenMod.API {
+namespace RocketToOpenMod.API {
 
   public interface IExternalJobManager {
     Task LoadExternalJobs();

@@ -67,7 +67,7 @@ namespace RocketToOpenMod.API
             FileStream stream = File.Open(name, FileMode.Open);
             T rocket;
             
-            if ((await File.ReadAllTextAsync(name)).Contains("xmnl"))
+            if ((await new StreamReader(stream).ReadToEndAsync()).Contains("xmnl"))
                 rocket = (T) new XmlSerializer(typeof(T), new XmlRootAttribute(rootAttributeName)).Deserialize(stream);
             else
                 rocket = (T) new XmlSerializer(typeof(T)).Deserialize(stream);
