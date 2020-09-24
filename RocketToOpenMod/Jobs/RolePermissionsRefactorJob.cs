@@ -31,7 +31,7 @@ namespace RocketToOpenMod.Jobs
             
             if (openMod == null)
             {
-                Console.WriteLine("[~] Could not load OpenMod translations!");
+                LogInfo("Could not load OpenMod translations!");
                 return;
             }
             

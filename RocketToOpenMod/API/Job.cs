@@ -19,8 +19,11 @@ namespace RocketToOpenMod.API
         public abstract Task DoAsync();
 
         private readonly WriteFileType _write;
-        public readonly string Name;
+        public string Name { get; }
 
+        protected async Task LogInfo(object input) {
+          Console.WriteLine("[~] " + input);
+        }
 
         protected async Task<PermissionRoleData> GetRoleFromRocketGroup(RocketPermissionsGroup group)
         {
@@ -54,7 +57,7 @@ namespace RocketToOpenMod.API
         
         protected async Task<RocketPermissions> LoadRocketPermissionsAsync()
         {
-            Console.WriteLine("[~] Loading Rocket permissions");
+            LogInfo("Loading Rocket permissions");
             return await DeserializeRocketAsset<RocketPermissions>("Permissions.Config.xml", "RocketPermissions");
         }
 
@@ -75,7 +78,7 @@ namespace RocketToOpenMod.API
         
         protected async Task<TranslationList> LoadTranslationsAsync()
         {
-            Console.WriteLine("[~] Loading Rocket translations");
+            LogInfo("Loading Rocket translations");
             return await DeserializeRocketAsset<TranslationList>("Rocket.Translations.en.xml", "RocketTranslations");
         }
 
@@ -107,13 +110,14 @@ namespace RocketToOpenMod.API
             var serializedYaml = serializer.Serialize(data);
             var encodedData = Encoding.UTF8.GetBytes(serializedYaml);
             var filePath = @$"{Name}.yml";
-            await File.Create(filePath).DisposeAsync();
+            if (!File.Exists(filePath))
+                await File.Create(filePath).DisposeAsync();
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
 
         protected async Task<PermissionRolesData> LoadOpenPermissionsAsync()
         {
-            Console.WriteLine("[~] Loading OpenMod permissions");
+            LogInfo("Loading OpenMod permissions");
             IDeserializer serializer = new DeserializerBuilder()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();

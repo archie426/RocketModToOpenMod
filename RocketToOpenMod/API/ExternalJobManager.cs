@@ -7,7 +7,7 @@ using RocketToOpenMod.Data;
 
 namespace RocketToOpenMod.API
 {
-    public class ExternalJobManager
+    public class ExternalJobManager : IExternalJobManager
     {
 
         private readonly WriteFileType _write;
@@ -26,6 +26,8 @@ namespace RocketToOpenMod.API
                 if (!file.Contains("dll"))
                     return;
                 
+                Console.WriteLine("Loading assembly " + file);
+                
                 Assembly assembly = Assembly.Load(file);
                 
                 foreach (Type t in assembly.GetTypes().Where(t => t.IsDefined(typeof(ExternalJobAttribute), false)))
@@ -37,6 +39,7 @@ namespace RocketToOpenMod.API
                     await job.DoAsync();
                     i++;
                 }
+
             } 
         }
     }
