@@ -57,29 +57,23 @@ namespace RocketToOpenMod.API
         
         protected async Task<RocketPermissions> LoadRocketPermissionsAsync()
         {
-            LogInfo("Loading Rocket permissions");
-            return await DeserializeRocketAsset<RocketPermissions>("Permissions.Config.xml", "RocketPermissions");
+            await LogInfo("Loading Rocket permissions");
+            return await DeserializeRocketAsset<RocketPermissions>("Permissions.Config.xml");
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
         protected async Task<T> DeserializeRocketAsset<T>(string name, string rootAttributeName = null)
         {
-            FileStream stream = File.Open(name, FileMode.Open);
-            T rocket;
-            
-            if ((await new StreamReader(stream).ReadToEndAsync()).Contains("xmnl"))
-                rocket = (T) new XmlSerializer(typeof(T), new XmlRootAttribute(rootAttributeName)).Deserialize(stream);
-            else
-                rocket = (T) new XmlSerializer(typeof(T)).Deserialize(stream);
-            
+            FileStream stream = File.Open(name, FileMode.Open, FileAccess.ReadWrite);
+            T rocket = (T) new XmlSerializer(typeof(T)).Deserialize(stream);
             stream.Close();
             return rocket;
         }
         
         protected async Task<TranslationList> LoadTranslationsAsync()
         {
-            LogInfo("Loading Rocket translations");
-            return await DeserializeRocketAsset<TranslationList>("Rocket.Translations.en.xml", "RocketTranslations");
+            await LogInfo("Loading Rocket translations");
+            return await DeserializeRocketAsset<TranslationList>("Rocket.Translations.en.xml");
         }
 
         protected async Task SaveAsync<T>(T data) where T : class
@@ -117,7 +111,7 @@ namespace RocketToOpenMod.API
 
         protected async Task<PermissionRolesData> LoadOpenPermissionsAsync()
         {
-            LogInfo("Loading OpenMod permissions");
+            await LogInfo("Loading OpenMod permissions");
             IDeserializer serializer = new DeserializerBuilder()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();

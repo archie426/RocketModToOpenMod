@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace RocketToOpenMod.Jobs
             
             if (openMod == null)
             {
-                LogInfo("Could not load OpenMod translations!");
+                await LogInfo("Could not load OpenMod translations!");
                 return;
             }
             
@@ -48,6 +49,14 @@ namespace RocketToOpenMod.Jobs
                     role.Permissions.Remove(perm);
                     role.Permissions.Add(Conversions[perm]);
                 }
+
+                foreach (string perm in role.Permissions.Where(p =>
+                    !Conversions.ContainsKey(p) && !p.Contains("unturned.")))
+                {
+                    role.Permissions.Remove(perm);
+                    role.Permissions.Add("RocketMod.PermissionLink" + perm);
+                }
+                
             }
 
             await SaveAsync(openMod);

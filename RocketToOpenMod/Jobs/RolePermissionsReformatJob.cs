@@ -17,18 +17,18 @@ namespace RocketToOpenMod.Jobs
 
             if (rocket == null)
             {
-                LogInfo("Could not load Rocket permissions!");
+                await LogInfo("Could not load Rocket permissions!");
                 return;
             }
             
-            LogInfo("Preparing OpenMod permissions");
+            await LogInfo("Preparing OpenMod permissions");
 
             PermissionRolesData openMod = new PermissionRolesData {Roles = new List<PermissionRoleData>()};
             
             foreach (RocketPermissionsGroup group in rocket.Groups)
                 openMod.Roles.Add(await GetRoleFromRocketGroup(group));
             
-            LogInfo("Saving OpenMod permissions");
+            await LogInfo("Saving OpenMod permissions");
 
             await SaveAsync(openMod);
 
