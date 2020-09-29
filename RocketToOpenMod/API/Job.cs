@@ -115,7 +115,7 @@ namespace RocketToOpenMod.API
             IDeserializer serializer = new DeserializerBuilder()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();
-            return (PermissionRolesData) serializer.Deserialize(new StreamReader(File.Open("permissions.yml", FileMode.Open)));
+            return serializer.Deserialize<PermissionRolesData>(new StreamReader(File.Open("permissions.yml", FileMode.Open)));
         }
 
         private async Task SaveXml<T>(T data) where T : class
