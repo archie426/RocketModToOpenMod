@@ -16,13 +16,24 @@ namespace RocketToOpenMod.API
 {
     public abstract class Job
     {
+        //really don't feel like using dependency injection in a program like this
+        private static readonly CachedDataAccessor Cache;
+
+        static Job()
+        {
+            Cache = new CachedDataAccessor();
+        }
+        
         public abstract Task DoAsync();
 
         private readonly WriteFileType _write;
         public string Name { get; }
 
-        protected async Task LogInfo(object input) {
-          Console.WriteLine("[~] " + input);
+        protected async Task LogInfo(object input)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("[~] " + input);
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         protected async Task<PermissionRoleData> GetRoleFromRocketGroup(RocketPermissionsGroup group)
@@ -58,7 +69,11 @@ namespace RocketToOpenMod.API
         protected async Task<RocketPermissions> LoadRocketPermissionsAsync()
         {
             await LogInfo("Loading Rocket permissions");
-            return await DeserializeRocketAsset<RocketPermissions>("Permissions.Config.xml");
+            if (Cache.RocketPermissions != null)
+                return Cache.RocketPermissions;
+            RocketPermissions result =  await DeserializeRocketAsset<RocketPermissions>("Permissions.Config.xml");
+            Cache.RocketPermissions = result;
+            return result;
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
@@ -73,7 +88,11 @@ namespace RocketToOpenMod.API
         protected async Task<TranslationList> LoadTranslationsAsync()
         {
             await LogInfo("Loading Rocket translations");
-            return await DeserializeRocketAsset<TranslationList>("Rocket.Translations.en.xml");
+            if (Cache.RocketTranslations != null)
+                return Cache.RocketTranslations;
+            TranslationList translations = await DeserializeRocketAsset<TranslationList>("Rocket.Translations.en.xml");
+            Cache.RocketTranslations = translations;
+            return translations;
         }
 
         protected async Task SaveAsync<T>(T data) where T : class
@@ -104,8 +123,6 @@ namespace RocketToOpenMod.API
             var serializedYaml = serializer.Serialize(data);
             var encodedData = Encoding.UTF8.GetBytes(serializedYaml);
             var filePath = @$"{Name}.yml";
-            if (!File.Exists(filePath))
-                await File.Create(filePath).DisposeAsync();
             await File.WriteAllBytesAsync(filePath, encodedData);
         }
 
@@ -115,7 +132,11 @@ namespace RocketToOpenMod.API
             IDeserializer serializer = new DeserializerBuilder()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();
-            return serializer.Deserialize<PermissionRolesData>(new StreamReader(File.Open("permissions.yml", FileMode.Open)));
+            FileStream file = File.Open("permissions.yml", FileMode.Open);
+            PermissionRolesData result = serializer.Deserialize<PermissionRolesData>(new StreamReader(file));
+            file.Close();
+            Cache.OpenModPermissions = result;
+            return result;
         }
 
         private async Task SaveXml<T>(T data) where T : class

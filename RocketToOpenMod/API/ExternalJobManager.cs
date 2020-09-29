@@ -35,7 +35,8 @@ namespace RocketToOpenMod.API
                     Job job = (Job) Activator.CreateInstance(t, _write);
                     if (job == null)
                         return;
-                    Console.WriteLine($"{i}. {assembly.FullName}: {job.Name}");
+                    ExternalJobAttribute info = (ExternalJobAttribute) t.GetCustomAttribute(typeof(ExternalJobAttribute));
+                    Console.WriteLine($"{i}. {assembly.FullName}: {info?.Name}");
                     await job.DoAsync();
                     i++;
                 }

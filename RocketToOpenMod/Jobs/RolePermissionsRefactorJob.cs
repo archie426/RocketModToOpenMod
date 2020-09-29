@@ -32,25 +32,27 @@ namespace RocketToOpenMod.Jobs
             
             if (openMod == null)
             {
-                await LogInfo("Could not load OpenMod translations!");
+                await LogInfo("Could not load OpenMod permissions!");
                 return;
             }
+
+            await LogInfo("Preparing OpenMod permissions");
             
             foreach (PermissionRoleData role in openMod.Roles)
             {
-                foreach (string perm in role.Permissions.Where(p => p.Contains("unturned.")))
+                foreach (string perm in role.Permissions.ToList().Where(p => p.Contains("unturned.")))
                 {
                     role.Permissions.Remove(perm);
                     role.Permissions.Add(perm.Replace("unturned.", "OpenMod.commands.unturned"));
                 }
 
-                foreach (string perm in role.Permissions.Where(p => Conversions.ContainsKey(p)))
+                foreach (string perm in role.Permissions.ToList().Where(p => Conversions.ContainsKey(p)))
                 {
                     role.Permissions.Remove(perm);
                     role.Permissions.Add(Conversions[perm]);
                 }
 
-                foreach (string perm in role.Permissions.Where(p =>
+                foreach (string perm in role.Permissions.ToList().Where(p =>
                     !Conversions.ContainsKey(p) && !p.Contains("unturned.")))
                 {
                     role.Permissions.Remove(perm);
@@ -58,6 +60,8 @@ namespace RocketToOpenMod.Jobs
                 }
                 
             }
+            
+            await LogInfo("Saving OpenMod permissions");
 
             await SaveAsync(openMod);
 
