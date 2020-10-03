@@ -18,6 +18,7 @@ namespace RocketToOpenMod.API
     {
         //really don't feel like using dependency injection in a program like this
         private static readonly CachedDataAccessor Cache;
+        private static string _logLocation;
 
         static Job()
         {
@@ -34,6 +35,14 @@ namespace RocketToOpenMod.API
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("[~] " + input);
             Console.ForegroundColor = ConsoleColor.White;
+            
+            if (_logLocation == null)
+            {
+                _logLocation = "log.txt";
+                File.Delete(_logLocation);
+            }
+
+            await File.AppendAllTextAsync(_logLocation, input + "\n");
         }
 
         protected async Task<PermissionRoleData> GetRoleFromRocketGroup(RocketPermissionsGroup group)

@@ -11,54 +11,63 @@ namespace RocketToOpenMod
     {
         public static async Task Main(string[] args)
         {
-            Console.WriteLine("RocketMod to OpenMod");
-            Console.WriteLine("If you haven't already please place this file inside the Rocket folder");
-            
-            if (!File.Exists("Permissions.Config.Xml"))
+            try
             {
-                Console.WriteLine("Wrong folder! Exiting");
-                await Task.Delay(3000);
-                return;
-            }
-
-            Job currentJob;
-            WriteFileType write;
+                Console.WriteLine("RocketMod to OpenMod");
+                Console.WriteLine("If you haven't already please place this file inside the Rocket folder");
             
-
-            if (args.Length == 0)
-                write = WriteFileType.Yaml;
-            else
-                write = args[0].ToLower() switch
+                if (!File.Exists("Permissions.Config.Xml"))
                 {
-                    "json" => WriteFileType.Json,
-                    "xml" => WriteFileType.Xml,
-                    _ => WriteFileType.Yaml
-                };
+                    Console.WriteLine("Wrong folder! Exiting");
+                    await Task.Delay(3000);
+                    return;
+                }
+
+                Job currentJob;
+                WriteFileType write;
             
 
-            Console.WriteLine("1. Permission Format Conversions ");
-            currentJob = new RolePermissionsReformatJob(write);
-            await currentJob.DoAsync();
+                if (args.Length == 0)
+                    write = WriteFileType.Yaml;
+                else
+                    write = args[0].ToLower() switch
+                    {
+                        "json" => WriteFileType.Json,
+                        "xml" => WriteFileType.Xml,
+                        _ => WriteFileType.Yaml
+                    };
             
-            Console.WriteLine("2. Permission Name Conversions ");
-            currentJob = new RolePermissionsRefactorJob(write);
-            await currentJob.DoAsync();
-            
-            Console.WriteLine("3. User General Data");
-            currentJob = new UsersJob(write);
-            await currentJob.DoAsync();
-            
-            Console.WriteLine("4. Core Translations");
-            currentJob = new LocalisationJob(write);
-            await currentJob.DoAsync();
-            
-            Console.WriteLine("Finding jobs from external assemblies....");
-            ExternalJobManager externalJobManager = new ExternalJobManager(write);
-            await externalJobManager.LoadExternalJobs();
 
-            Console.WriteLine("Done!");
+                Console.WriteLine("1. Permission Format Conversions ");
+                currentJob = new RolePermissionsReformatJob(write);
+                await currentJob.DoAsync();
             
-            await Task.Delay(5000);
+                Console.WriteLine("2. Permission Name Conversions ");
+                currentJob = new RolePermissionsRefactorJob(write);
+                await currentJob.DoAsync();
+            
+                Console.WriteLine("3. User General Data");
+                currentJob = new UsersJob(write);
+                await currentJob.DoAsync();
+            
+                Console.WriteLine("4. Core Translations");
+                currentJob = new LocalisationJob(write);
+                await currentJob.DoAsync();
+            
+                Console.WriteLine("Finding jobs from external assemblies....");
+                ExternalJobManager externalJobManager = new ExternalJobManager(write);
+                await externalJobManager.LoadExternalJobs();
+
+                Console.WriteLine("Done!");
+
+                Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.ReadLine();
+            }
+            
             
         }
         

@@ -33,10 +33,11 @@ namespace RocketToOpenMod.Jobs
             await SaveAsync(openMod);
 
         }
-        
 
-        public RolePermissionsReformatJob(WriteFileType write) : base( write, "permissions")
+
+        public RolePermissionsReformatJob(WriteFileType write) : base(write, "permissions")
         {
+            
         }
     }
 }
