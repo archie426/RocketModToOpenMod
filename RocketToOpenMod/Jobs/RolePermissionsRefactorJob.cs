@@ -56,7 +56,7 @@ namespace RocketToOpenMod.Jobs
                     !Conversions.ContainsKey(p) && !p.Contains("unturned.")))
                 {
                     role.Permissions.Remove(perm);
-                    role.Permissions.Add("RocketMod.PermissionLink" + perm);
+                    role.Permissions.Add("Rocket:PermissionLink." + perm);
                 }
                 
             }
