@@ -19,6 +19,7 @@ namespace RocketToOpenMod.API
         
         public async Task LoadExternalJobs()
         {
+            //default amount of jobs
             int i = 4;
             
             foreach (string file in Directory.GetFiles(Assembly.GetExecutingAssembly().Location.Replace("RocketToOpenMod.exe", "")))
@@ -34,7 +35,7 @@ namespace RocketToOpenMod.API
                 {
                     Job job = (Job) Activator.CreateInstance(t, _write);
                     if (job == null)
-                        return;
+                        continue;
                     ExternalJobAttribute info = (ExternalJobAttribute) t.GetCustomAttribute(typeof(ExternalJobAttribute));
                     Console.WriteLine($"{i}. {assembly.FullName}: {info?.Name}");
                     await job.DoAsync();
