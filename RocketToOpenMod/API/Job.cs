@@ -151,7 +151,9 @@ namespace RocketToOpenMod.API
         private async Task SaveXml<T>(T data) where T : class
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            xmlSerializer.Serialize(File.Open(@$"{Name}.xml", FileMode.Open), data);
+            FileStream file = File.Open(@$"{Name}.xml", FileMode.Open);
+            xmlSerializer.Serialize(file, data);
+            file.Close();
         }
 
         private async Task SaveJson<T>(T data) where T : class
