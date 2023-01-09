@@ -28,7 +28,7 @@ namespace RocketToOpenMod.Jobs
             
         }
 
-        public override async Task DoAsync()
+        protected override async Task DoAsync()
         {
             TranslationList rocket = await LoadTranslationsAsync();
 

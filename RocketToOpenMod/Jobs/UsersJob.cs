@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NinkyNonk.Shared.Environment;
 using RocketToOpenMod.API;
 using RocketToOpenMod.Data;
 using RocketToOpenMod.Model.OpenMod.Users;
@@ -11,7 +12,7 @@ namespace RocketToOpenMod.Jobs
 {
     public class UsersJob : Job
     {
-        public override async Task DoAsync()
+        protected override async Task DoAsync()
         {
             await LogInfo("Loading user data from the following Rocket sources:" +
                               "\n" + "* Permissions");
@@ -20,7 +21,7 @@ namespace RocketToOpenMod.Jobs
 
             if (rocketPermissions == null)
             {
-                await LogInfo("Could not load Rocket permissions");
+                Project.LoggingProxy.LogError("Could not load Rocket permissions");
                 return;
             }
 

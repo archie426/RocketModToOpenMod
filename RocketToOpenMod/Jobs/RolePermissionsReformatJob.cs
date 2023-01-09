@@ -10,8 +10,7 @@ namespace RocketToOpenMod.Jobs
 {
     public class RolePermissionsReformatJob : Job
     {
-        
-        public override async Task DoAsync()
+        protected override async Task DoAsync()
         {
             RocketPermissions rocket = await LoadRocketPermissionsAsync();
 

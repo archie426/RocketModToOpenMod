@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using NinkyNonk.Shared.Environment;
 using RocketToOpenMod.Data;
 using RocketToOpenMod.Model.OpenMod.Permissions;
 using RocketToOpenMod.Model.Rocket.Permissions;
@@ -25,16 +26,26 @@ namespace RocketToOpenMod.API
             Cache = new CachedDataAccessor();
         }
         
-        public abstract Task DoAsync();
+        protected abstract Task DoAsync();
+
+        public virtual async Task RunAsync()
+        {
+            try
+            {
+                await DoAsync();
+            }
+            catch (Exception e)
+            {
+                Project.LoggingProxy.LogError("Exception in " + nameof(GetType) + ":\n" + e.Message);
+            }
+        }
 
         private readonly WriteFileType _write;
         public string Name { get; }
 
         protected async Task LogInfo(object input)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("[~] " + input);
-            Console.ForegroundColor = ConsoleColor.White;
+            Project.LoggingProxy.LogInfo(input.ToString());
             
             if (_logLocation == null)
             {
@@ -125,7 +136,7 @@ namespace RocketToOpenMod.API
         }
         private async Task SaveYaml<T>(T data) where T : class
         {
-            ISerializer serializer = new SerializerBuilder().EmitDefaults()
+            ISerializer serializer = new SerializerBuilder()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();
             

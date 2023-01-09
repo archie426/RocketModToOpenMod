@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using NinkyNonk.Shared.Environment;
 using RocketToOpenMod.API;
 using RocketToOpenMod.Data;
 using RocketToOpenMod.Jobs;
@@ -13,20 +14,19 @@ namespace RocketToOpenMod
         {
             try
             {
-                Console.WriteLine("RocketMod to OpenMod");
-                Console.WriteLine("If you haven't already please place this file inside the Rocket folder");
+                Project.LoggingProxy.LogProgramInfo();
+                Project.LoggingProxy.Log("If you haven't already please place this file inside the Rocket folder");
             
                 if (!File.Exists("Permissions.Config.Xml"))
                 {
-                    Console.WriteLine("Wrong folder! Exiting");
+                    Project.LoggingProxy.LogFatal("Wrong folder!");
                     await Task.Delay(3000);
                     return;
                 }
 
                 Job currentJob;
                 WriteFileType write;
-            
-
+                
                 if (args.Length == 0)
                     write = WriteFileType.Yaml;
                 else
@@ -36,36 +36,34 @@ namespace RocketToOpenMod
                         "xml" => WriteFileType.Xml,
                         _ => WriteFileType.Yaml
                     };
-            
-
-                Console.WriteLine("1. Permission Format Conversions ");
+                
+                Project.LoggingProxy.LogUpdate("1. Permission Formatting");
                 currentJob = new RolePermissionsReformatJob(write);
-                await currentJob.DoAsync();
+                await currentJob.RunAsync();
             
-                Console.WriteLine("2. Permission Name Conversions ");
+                Project.LoggingProxy.LogUpdate("2. Permission Names");
                 currentJob = new RolePermissionsRefactorJob(write);
-                await currentJob.DoAsync();
+                await currentJob.RunAsync();
             
-                Console.WriteLine("3. User General Data");
+                Project.LoggingProxy.LogUpdate("3. User General Data");
                 currentJob = new UsersJob(write);
-                await currentJob.DoAsync();
+                await currentJob.RunAsync();
             
-                Console.WriteLine("4. Core Translations");
+                Project.LoggingProxy.LogUpdate("4. Core Translations");
                 currentJob = new LocalisationJob(write);
-                await currentJob.DoAsync();
+                await currentJob.RunAsync();
             
-                Console.WriteLine("Finding jobs from external assemblies....");
+                Project.LoggingProxy.LogInfo("Finding jobs from external assemblies....");
                 ExternalJobManager externalJobManager = new ExternalJobManager(write);
-                await externalJobManager.LoadExternalJobs();
+                await externalJobManager.RunExternalJobs();
 
-                Console.WriteLine("Done!");
-
-                Console.ReadLine();
+                Project.LoggingProxy.LogSuccess("Done!");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                Console.ReadLine();
+                Project.LoggingProxy.LogFatal(e.Message);
+                Console.ReadKey();
             }
             
             

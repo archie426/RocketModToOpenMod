@@ -25,9 +25,8 @@ namespace RocketToOpenMod.Jobs
         }
         
 
-        public override async Task DoAsync()
+        protected override async Task DoAsync()
         {
-
             PermissionRolesData openMod = await LoadOpenPermissionsAsync();
             
             if (openMod == null)

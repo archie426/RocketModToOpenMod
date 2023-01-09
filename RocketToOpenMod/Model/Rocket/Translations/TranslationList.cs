@@ -29,15 +29,15 @@ namespace RocketToOpenMod.Model.Rocket.Translations
         public string Translate(string translationKey, params object[] placeholder)
         {
             string value = this[translationKey];
-            if (String.IsNullOrEmpty(value)) return translationKey;
+            
+            if (string.IsNullOrEmpty(value))
+                return translationKey;
                 
             if (value.Contains("{") && value.Contains("}") && placeholder != null && placeholder.Length != 0)
             {
                 for (int i = 0; i < placeholder.Length; i++)
-                {
-                    if (placeholder[i] == null) placeholder[i] = "NULL";
-                }
-                value = String.Format(value, placeholder);
+                    placeholder[i] ??= "NULL";
+                value = string.Format(value, placeholder);
             }
             return value;
         }

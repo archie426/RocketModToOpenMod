@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using NinkyNonk.Shared.Environment;
 using RocketToOpenMod.Data;
 
 namespace RocketToOpenMod.API
@@ -17,7 +18,7 @@ namespace RocketToOpenMod.API
             _write = write;
         }
         
-        public async Task LoadExternalJobs()
+        public async Task RunExternalJobs()
         {
             //default amount of jobs
             int i = 4;
@@ -27,7 +28,7 @@ namespace RocketToOpenMod.API
                 if (!file.Contains("dll"))
                     return;
                 
-                Console.WriteLine("Loading assembly " + file);
+                Project.LoggingProxy.LogInfo("Loading assembly " + file + "...");
                 
                 Assembly assembly = Assembly.Load(file);
                 
@@ -37,8 +38,8 @@ namespace RocketToOpenMod.API
                     if (job == null)
                         continue;
                     ExternalJobAttribute info = (ExternalJobAttribute) t.GetCustomAttribute(typeof(ExternalJobAttribute));
-                    Console.WriteLine($"{i}. {assembly.FullName}: {info?.Name}");
-                    await job.DoAsync();
+                    Project.LoggingProxy.LogUpdate($"{i}. {assembly.FullName}: {info?.Name}");
+                    await job.RunAsync();
                     i++;
                 }
 
